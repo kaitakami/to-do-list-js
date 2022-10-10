@@ -48,7 +48,32 @@
       <!-- Github logo -->
     </nav>
     <aside class="mx-2 md:mx-6">
-      <div class="max-w-screen-xl mx-auto text-2xl font-semibold py-2 shadow-sm px-8 md:px-2">Groups</div>
+      <div class="max-w-screen-xl mx-auto text-2xl font-semibold py-2 shadow-sm px-8 md:px-2 flex items-center gap-2">
+        Groups <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="w-8 h-8 edit-groups-button hover:-translate-y-1 transition-transform">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <!-- Edit Modal -->
+        <div id="edit-group-modal"
+          class="hidden w-screen h-screen overflow-hidden bg-dark fixed left-0 top-0 z-50 justify-center items-center">
+          <div
+            class="w-fit h-auto max-w-screen-lg bg-gray px-4 md:px-10 py-12 flex flex-col items-center rounded-md gap-8 mx-4  md:mx-8">
+            <div class="text-xl text-center font-semibold">Edit Groups</div>
+            <div class="edit-groups-box max-h-80 overflow-y-auto flex flex-col gap-5">
+              <!--  -->
+              <!--  -->
+
+            </div>
+            <div class="mt-8">
+              <button type="button"
+                class="edit-groups-button rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-slate-700 border-slate-800 hover:scale-110 transition-transform cursor-pointer">
+                <div class="font-semibold">Go back</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <section class="aside-container">
         <!--  -->
         <div
@@ -97,36 +122,39 @@
             </div>
           </div>
         </div>
-        <div
-          class="task-group bg-gray-dark rounded-2xl flex flex-col gap-2 items-center justify-center p-4 shadow-md sm:shadow-sm cursor-pointer hover:-translate-y-1 transition-transform">
-          <div class="flex gap-3 items-center">
-            <!-- Name and color -->
-            <div class="group-color w-8 h-8 rounded-full bg-yellow-200"></div>
-            <div class="text-xl font-semibold whitespace-nowrap">Group Name</div>
-          </div>
-          <div class="">
-            <!-- tasks number -->
-            <div class="text-gray-light">48 tasks</div>
-          </div>
-          <div class="">
-            <!-- progress -->
-            <div class="flex items-center justify-between my-2">
-              <p class="text-gray-300 text-sm whitespace-nowrap">
-                4/6 task completed
-              </p>
-            </div>
-            <div class="w-full h-2 bg-gray-light rounded-full">
-              <div class="progress-bar w-2/3 h-full text-center text-xs bg-gray rounded-full">
-              </div>
-            </div>
-          </div>
+        <div class="groups-render-box flex gap-5">
         </div>
+
         <!-- Add button -->
-        <div class="p-10">
+        <div id="add-group-button" class="p-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-14 h-14  hover:-translate-y-2 transition-transform">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
+        </div>
+        <div id="add-group-modal"
+          class="hidden w-screen h-screen overflow-hidden bg-dark fixed left-0 top-0 z-50 justify-center items-center">
+          <div
+            class="w-fit h-auto max-w-screen-lg bg-gray px-4 md:px-10 py-12 flex flex-col items-center rounded-md gap-8 mx-4  md:mx-8">
+            <div class="text-xl text-center font-semibold">Add a new group</div>
+            <form class="flex flex-col">
+              <label class="font-medium">Group Name</label>
+              <input class="add-modal-input input-new-group-name" placeholder="Write the task name" maxlength="45"
+                type="text" required />
+              <label class="font-medium mt-4">Group's Color</label>
+              <input class="add-modal-input input-new-group-color w-full h-20" placeholder="" type="color" required />
+              <div class="grid grid-cols-2 gap-3 md:gap-8 mt-8">
+                <button id="remove-group-modal-button" type="button"
+                  class="rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-slate-700 border-slate-800 hover:scale-110 transition-transform cursor-pointer">
+                  <div class="font-semibold">Go back</div>
+                </button>
+                <button id="submit-group-button" type="submit"
+                  class="rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 cursor-pointer hover:scale-110 transition-transform ">
+                  <div class="font-semibold">Add new Group</div>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
       <!-- Projects ui -->
@@ -168,17 +196,17 @@
           </div>
         </div>
         <div
-          class="hidden w-screen h-screen overflow-hidden bg-dark fixed left-0 top-0 z-50 flex justify-center items-center">
+          class="hidden w-screen h-screen overflow-hidden bg-dark fixed left-0 top-0 z-50 justify-center items-center delete-task-modal">
           <div
             class="w-fit h-auto max-w-screen-lg bg-gray px-4 md:px-10 py-12 flex flex-col items-center rounded-md gap-8 mx-4  md:mx-8">
             <div class="text-xl text-center">Are you sure you want to delete this task?</div>
             <div class="flex gap-3 md:gap-8">
               <button
-                class="rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-slate-700 border-slate-800 hover:scale-110 transition-transform cursor-pointer">
+                class="confirmation-go-back-button rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-slate-700 border-slate-800 hover:scale-110 transition-transform cursor-pointer">
                 <div class="font-semibold">No, go back</div>
               </button>
               <button
-                class="rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-red-700 border-red-800 cursor-pointer hover:scale-110 transition-transform ">
+                class="delete-task-confirmation rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-red-700 border-red-800 cursor-pointer hover:scale-110 transition-transform ">
                 <div class="font-semibold">Delete this task</div>
               </button>
             </div>
@@ -197,10 +225,10 @@
               <div class="text-xl text-center font-semibold">Add a new task</div>
               <form class="flex flex-col">
                 <label class="font-medium">Task Name</label>
-                <input class="add-task-input input-new-task-name" placeholder="Write the task name" maxlength="45"
+                <input class="add-modal-input input-new-task-name" placeholder="Write the task name" maxlength="45"
                   type="text" required />
                 <label class="font-medium mt-4">Due Date</label>
-                <input class="add-task-input input-new-task-date" placeholder="" type="date" />
+                <input class="add-modal-input input-new-task-date" placeholder="" type="date" />
                 <div class="grid grid-cols-2 gap-3 md:gap-8 mt-8">
                   <button id="remove-task-modal-button" type="button"
                     class="rounded px-4 py-5 m-1 border-b-4 border-l-2 shadow-lg bg-slate-700 border-slate-800 hover:scale-110 transition-transform cursor-pointer">
