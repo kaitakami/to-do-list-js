@@ -23,7 +23,7 @@
     @apply py-4 md:py-6 px-4 md:px-8 min-w-full flex justify-between shadow-md place-content-center bg-gray-dark rounded-2xl md:rounded-full;
   }
 
-  .add-task-input {
+  .add-modal-input {
     @apply bg-gray-dark rounded-lg py-2 pl-2 pr-7 focus:border-indigo-500 focus:ring-indigo-500 border-transparent border-2 outline-none transition;
   }
 }
