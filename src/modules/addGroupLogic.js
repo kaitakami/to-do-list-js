@@ -1,13 +1,18 @@
 let groups = [];
+let selectedGroup = {
+  name: "all",
+
+}; // by default all tasks area selected
 
 const getNewGroupData = (newGroup) => {
   groups.push(newGroup);
-  selectedGroup(newGroup.id);
+  newGroupSelected(newGroup.id);
 };
 
-const selectedGroup = (groupId) => {
+const newGroupSelected = (groupId) => {
   const tempGroups = groups.map((group) => {
     if (group.id === groupId) {
+      selectedGroup = group;
       return {
         ...group,
         selected: true,
@@ -28,4 +33,10 @@ const deleteGroup = (groupId) => {
   groups = [...tempGroups];
 };
 
-export { groups, getNewGroupData, selectedGroup, deleteGroup };
+export {
+  groups,
+  getNewGroupData,
+  newGroupSelected,
+  deleteGroup,
+  selectedGroup,
+};

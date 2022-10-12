@@ -35,7 +35,7 @@ const changeCheckedStatus = (taskId) => {
     }
   });
   tasks = [...tempTasks];
-  console.log(tasks)
+  console.log(tasks);
   tasksSetLS(tasks);
 };
 

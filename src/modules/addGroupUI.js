@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import {
   groups,
   getNewGroupData,
-  selectedGroup,
+  newGroupSelected,
   deleteGroup,
 } from "./addGroupLogic";
 
@@ -93,7 +93,7 @@ const renderGroups = () => {
   const groupsElements = document.querySelectorAll(".task-group");
   groupsElements.forEach((group) => {
     group.addEventListener("click", () => {
-      selectedGroup(group.classList[1]);
+      newGroupSelected(group.classList[1]);
       renderGroups();
     });
   });

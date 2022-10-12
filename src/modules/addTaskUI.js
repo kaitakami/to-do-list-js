@@ -5,12 +5,14 @@ import {
   changeCheckedStatus,
   tasks,
 } from "./addTaskLogic";
+import { selectedGroup } from "./addGroupLogic";
 
 const addTaskModal = document.getElementById("add-task-modal");
 const addTaskButton = document.getElementById("add-task-button");
 const removeTaskModalButton = document.getElementById(
   "remove-task-modal-button"
 );
+
 const submitTaskButton = document.getElementById("submit-task-button");
 const newTaskName = document.querySelector(".input-new-task-name");
 const newTaskDate = document.querySelector(".input-new-task-date");
@@ -44,6 +46,7 @@ const addTask = (e) => {
     getUserData(newTaskData);
     toggleModalClasses();
     renderTasks();
+    console.log(selectedGroup)
   }
 };
 
