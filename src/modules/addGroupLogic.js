@@ -1,7 +1,9 @@
 let groups = [];
 let selectedGroup = {
   name: "all",
-
+  color: undefined,
+  id: 1,
+  selected: true,
 }; // by default all tasks area selected
 
 const getNewGroupData = (newGroup) => {
