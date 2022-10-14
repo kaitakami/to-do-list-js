@@ -4,16 +4,21 @@ import {
   getNewGroupData,
   newGroupSelected,
   deleteGroup,
+  selectDefaultGroup
 } from "./addGroupLogic";
 
 const addGroupButton = document.getElementById("add-group-button");
 const addGroupModal = document.getElementById("add-group-modal");
-console.log(addGroupButton);
 const goBackButton = document.getElementById("remove-group-modal-button");
 const submitGroupButton = document.getElementById("submit-group-button");
 const newGroupNameInput = document.querySelector(".input-new-group-name");
 const newGroupColorInput = document.querySelector(".input-new-group-color");
 const groupsRenderBox = document.querySelector(".groups-render-box");
+const allTasksButton = document.querySelector(".all-tasks-selector");
+const todayTasksButton = document.querySelector(".today-tasks-selector");
+
+allTasksButton.addEventListener("click", () => selectDefaultGroup("All"));
+todayTasksButton.addEventListener("click", () => selectDefaultGroup("Today"));
 
 const toggleModalClasses = () => {
   addGroupModal.classList.toggle("hidden");

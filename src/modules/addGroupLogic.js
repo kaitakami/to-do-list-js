@@ -1,8 +1,10 @@
+import { renderTasks } from "./addTaskUI";
+
 let groups = [];
 let selectedGroup = {
   name: "all",
   color: undefined,
-  id: 1,
+  id: "1",
   selected: true,
 }; // by default all tasks area selected
 
@@ -27,6 +29,7 @@ const newGroupSelected = (groupId) => {
     }
   });
   groups = [...tempGroups];
+  renderTasks();
 };
 
 const deleteGroup = (groupId) => {
@@ -35,10 +38,19 @@ const deleteGroup = (groupId) => {
   groups = [...tempGroups];
 };
 
+const selectDefaultGroup = (groupName) => {
+  if (groupName === "All") {
+
+  } else {
+
+  }
+}
+
 export {
   groups,
   getNewGroupData,
   newGroupSelected,
   deleteGroup,
   selectedGroup,
+  selectDefaultGroup,
 };

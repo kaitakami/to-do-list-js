@@ -8,6 +8,7 @@ let tasks = tasksLocalStorage || [
     group: {
       name: undefined,
       color: undefined,
+      id: "1",
     },
     id: "1",
   },

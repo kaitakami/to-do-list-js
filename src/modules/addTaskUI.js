@@ -5,7 +5,7 @@ import {
   changeCheckedStatus,
   tasks,
 } from "./addTaskLogic";
-import { selectedGroup } from "./addGroupLogic";
+import { newGroupSelected, selectedGroup } from "./addGroupLogic";
 
 const addTaskModal = document.getElementById("add-task-modal");
 const addTaskButton = document.getElementById("add-task-button");
@@ -38,15 +38,15 @@ const addTask = (e) => {
       name: newTaskName.value[0].toUpperCase() + newTaskName.value.substring(1),
       date: newTaskDate.value ? newTaskDate.value : "Not defined",
       group: {
-        name: undefined,
-        color: undefined,
+        name: selectedGroup.name,
+        color: selectedGroup.color,
+        id: selectedGroup.id,
       },
       id: nanoid(),
     };
     getUserData(newTaskData);
     toggleModalClasses();
     renderTasks();
-    console.log(selectedGroup)
   }
 };
 
@@ -78,7 +78,8 @@ const toggleDeleteTaskModal = () => {
 const renderTasks = () => {
   tasksRenderBox.innerHTML = ``;
   tasks.forEach((task) => {
-    tasksRenderBox.innerHTML += `
+    if (task.group.id === selectedGroup.id || selectedGroup.id === "1") {
+      tasksRenderBox.innerHTML += `
       <div class="task">
       <div class="flex items-center gap-3 w-full">
       <div class="done-button ${task.id}">
@@ -98,9 +99,9 @@ const renderTasks = () => {
         <div class="md:flex justify-between w-full">
           <div class="text-white text-lg">${task.name}</div>
           <div class="flex items-center gap-4">
-            <div class="hidden md:block group-color w-8 h-8 rounded-full ${
-              task.group.color
-            }"></div>
+            <div class="${task.group.color} color${
+        task.id
+      } hidden md:block group-color w-8 h-8 rounded-full"></div>
             <p class="text-gray-light">${task.date}</p>
           </div>
         </div>
@@ -115,6 +116,11 @@ const renderTasks = () => {
       </div>
     </div>
   `;
+      const groupColor = document.querySelector(`.color${task.id}`);
+      if (groupColor.classList[0][0] === "#") {
+        groupColor.style.backgroundColor = groupColor.classList[0];
+      }
+    }
   });
 
   // Add done functionality
@@ -139,3 +145,5 @@ const renderTasks = () => {
 };
 
 renderTasks();
+
+export { renderTasks };
