@@ -4,7 +4,6 @@ import {
   getNewGroupData,
   newGroupSelected,
   deleteGroup,
-  selectDefaultGroup
 } from "./addGroupLogic";
 
 const addGroupButton = document.getElementById("add-group-button");
@@ -17,8 +16,15 @@ const groupsRenderBox = document.querySelector(".groups-render-box");
 const allTasksButton = document.querySelector(".all-tasks-selector");
 const todayTasksButton = document.querySelector(".today-tasks-selector");
 
-allTasksButton.addEventListener("click", () => selectDefaultGroup("All"));
-todayTasksButton.addEventListener("click", () => selectDefaultGroup("Today"));
+allTasksButton.addEventListener("click", () => {
+  newGroupSelected("all");
+  renderGroups();
+});
+
+todayTasksButton.addEventListener("click", () => {
+  newGroupSelected("today");
+  renderGroups();
+});
 
 const toggleModalClasses = () => {
   addGroupModal.classList.toggle("hidden");
@@ -69,25 +75,6 @@ const renderGroups = () => {
         <div id="${group.id}" class="group-color w-8 h-8 rounded-full"></div>
         <div class="text-xl font-semibold whitespace-nowrap">${group.name}</div>
       </div>
-      <div class="">
-        <!-- tasks number -->
-        <div class="text-gray-light">${group.tasks} task${
-      group.tasks > 1 ? "s" : ""
-    }</div>
-      </div>
-      <div class="">
-        <!-- progress -->
-        <div class="flex items-center justify-between my-2">
-          <p class="text-gray-300 text-sm whitespace-nowrap">
-          ${group.completedTasks}/${group.tasks} task${
-      group.completedTasks > 1 ? "s" : ""
-    } completed
-          </p>
-        </div>
-        <div class="w-full h-2 bg-gray-light rounded-full">
-          <div class="progress-bar w-2/3 h-full text-center text-xs bg-gray rounded-full">
-          </div>
-        </div>
       </div>
     </div>
     `;
@@ -124,7 +111,7 @@ const toggleEditModal = () => {
 const renderEditGroups = () => {
   editGroupsBox.innerHTML = groups.length
     ? ""
-    : `<div class="text-xl">Empieza creando un grupo</div>`;
+    : `<div class="text-xl">Start by creating a new group</div>`;
   groups.forEach((group) => {
     editGroupsBox.innerHTML += `
     <div class="edit-group bg-gray-dark p-3 rounded-lg flex gap-3 items-center justify-between">
@@ -152,3 +139,5 @@ const renderEditGroups = () => {
     })
   );
 };
+
+renderGroups();

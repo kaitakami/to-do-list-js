@@ -2,7 +2,7 @@ import { tasksSetLS, tasksLocalStorage } from "./localStorage";
 
 let tasks = tasksLocalStorage || [
   {
-    name: "Start by adding a new Task!",
+    name: "You have to create a group to start adding tasks! :)",
     date: new Date().toLocaleDateString(),
     checked: false,
     group: {
@@ -36,7 +36,6 @@ const changeCheckedStatus = (taskId) => {
     }
   });
   tasks = [...tempTasks];
-  console.log(tasks);
   tasksSetLS(tasks);
 };
 
