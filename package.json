@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kaitakami/to-do-list-js#readme",
   "devDependencies": {
+    "eslint": "^8.25.0",
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
